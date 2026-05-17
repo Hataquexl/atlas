@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas Histórico Mundial — LF Studio</title>
+<meta name="description" content="Atlas Histórico Mundial interativo. Explore eventos desde 1789 até 2026 em um mapa cinematográfico premium.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+<body>
+
+<!-- ═══ LOADING SCREEN ═══ -->
+<div id="loading-screen">
+  <div id="ld-grid"></div>
+  <div id="ld-glow"></div>
+  <div class="ld-corner tl">Atlas Histórico · LF Studio</div>
+  <div class="ld-corner tr">Desde 1789</div>
+  <div class="ld-corner bl">Cartografia Mundial</div>
+  <div class="ld-corner br">v2.0</div>
+  <div id="ld-title">Atlas Histórico</div>
+  <div id="ld-sub">Carregando cartografia</div>
+  <div class="ld-bar-wrap">
+    <div class="ld-bar-track"><div class="ld-bar-fill" id="ld-fill"></div></div>
+    <div class="ld-pct" id="ld-pct">0%</div>
+  </div>
+</div>
+
+<!-- ═══ CURSOR ═══ -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<!-- ═══ TOPBAR ═══ -->
+<header class="topbar" id="topbar">
+  <div class="logo">ATLAS <em>Histórico</em></div>
+  <div class="topbar-center">
+    <div id="year-display">1945</div>
+    <input id="year-slider" type="range" min="1789" max="2026" value="1945" step="1">
+  </div>
+  <div class="qbtn-wrap" id="qbtns"></div>
+  <div class="filter-wrap">
+    <span class="filter-label">Filtrar:</span>
+    <button class="fbtn active" data-t="all">Todos</button>
+    <button class="fbtn" data-t="war">⚔ Guerra</button>
+    <button class="fbtn" data-t="revolution">✊ Revolução</button>
+    <button class="fbtn" data-t="crisis">↘ Crise</button>
+    <button class="fbtn" data-t="discovery">◎ Descoberta</button>
+    <button class="fbtn" data-t="treaty">§ Tratado</button>
+  </div>
+</header>
+
+<!-- ═══ MAP ═══ -->
+<div id="map-container">
+  <canvas id="map-canvas"></canvas>
+  <canvas id="particles-canvas"></canvas>
+  <div id="pins-layer"></div>
+  <div id="counter">— eventos</div>
+  <div id="legend">
+    <div class="leg-title">Legenda</div>
+    <div class="leg-row"><div class="leg-dot" style="background:#e87060"></div>Guerra</div>
+    <div class="leg-row"><div class="leg-dot" style="background:#c080e0"></div>Revolução</div>
+    <div class="leg-row"><div class="leg-dot" style="background:#e0a840"></div>Crise</div>
+    <div class="leg-row"><div class="leg-dot" style="background:#60c080"></div>Descoberta</div>
+    <div class="leg-row"><div class="leg-dot" style="background:#6090e0"></div>Tratado</div>
+  </div>
+</div>
+
+<!-- ═══ SIDE PANEL ═══ -->
+<div id="panel">
+  <div class="panel-head">
+    <div class="panel-title">Eventos de <span class="panel-year" id="panel-year">1945</span></div>
+    <button class="panel-close" id="panel-close">✕</button>
+  </div>
+  <div class="panel-body" id="panel-body"></div>
+</div>
+
+<!-- ═══ TOOLTIP ═══ -->
+<div id="tooltip"><div class="tip-inner">
+  <div class="tip-country" id="tt-country"></div>
+  <div class="tip-leader" id="tt-leader"></div>
+  <div class="tip-event" id="tt-event"></div>
+  <div class="tip-desc" id="tt-desc"></div>
+</div></div>
+
+<!-- ═══ TIMELINE ═══ -->
+<div id="timeline"><div class="tl-track" id="tl-track"></div></div>
+
+<!-- ═══ DATA: world-geo.js ═══ -->
+<script src="data/world-geo.js"></script>
+<!-- ═══ DATA: historical-events.js ═══ -->
+<script src="data/historical-events.js"></script>
+
+<!-- ═══ MAIN APPLICATION ═══ -->
+<script src="app.js"></script>
+</body>
+</html>
